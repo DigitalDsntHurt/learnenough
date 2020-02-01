@@ -1,0 +1,26 @@
+The idea is that every element on the page is contained inside of another element, which in turn can contain other elements—like Russian nesting dolls.
+
+This hierarchical tag structure is known as the Document Object Model, or DOM for short. Each new level in the DOM is a child of the level above it.
+
+In CSS, styling rules flow down from parents to children unless another style interrupts and takes priority.
+
+CSS statements are made up of selectors, properties and values...
+
+selector {
+	property: value;
+}
+
+div {
+	border: 1px solid black;
+}
+
+
+Traditionally, we organize css properties alphabetically
+
+
+div{
+	border: 1px solid black;
+	margin: auto;	
+	text-align: center;
+	text-decoration: underline;
+}

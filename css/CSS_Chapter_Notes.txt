@@ -15,12 +15,24 @@ div {
 }
 
 
-Traditionally, we organize css properties alphabetically
+Traditionally, we organize css properties alphabetically (in sublime, you can alphabetize by selecting lines and clicking fn + f5)
 
 
-div{
+div{	
 	border: 1px solid black;
 	margin: auto;	
 	text-align: center;
 	text-decoration: underline;
 }
+
+in CSS we select dom elements to style using two methods
+1. id -- which selects only one element per page
+2. class -- which selects multiple elements per page
+
+Although CSS offers a great deal of flexibility in choosing id and class names, there are a few restrictions and usage suggestions:
+
+- Use only one id per element.
+- No numbers are allowed at the beginning of the name (e.g., name1 is valid, but 1name isn’t).
+- Dashes (-), underscores _, and CamelCase can be used to join multiple words (so foo-bar-baz, foo_bar_baz, and FooBarBaz are all valid names).
+- Spaces are invalid in id names, and are used to separate multiple names in the case of classes (so id="foo bar" is illegal, while class="foo bar baz" places three separate classes on an element).
+- Be consistent (e.g., if using dashes as separators, use them everywhere—don’t mix them with underscores).

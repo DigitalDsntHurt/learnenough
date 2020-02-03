@@ -117,3 +117,103 @@ body div#exec-bio.bio-box a {
 in general, we don't want to extend beyond 3 things in a selector
 when you start to appraoch your selector depth limit of three we need to start thinking about adding another class
 
+
+ORDERING CSS FILES
+- go from most generic, site-wide styles at the top of your sheet down to the most specific, domain-specific modular styles at the bottom
+
+so at this point in thte tutorial, our ordered and commented styles look like this
+    <style type="text/css">
+
+      /* GLOBAL STYLES */
+      a {
+          color: red;
+      }
+
+      /* SOCIAL STYLES */
+      a.social-link{
+        color: blue;
+      }
+
+      /* BIO STYLES */
+      .bio-box {
+        border: 1px solid black;
+      } 
+
+      .bio-copy a {
+        color: green;
+      }
+      
+    </style>
+
+
+##
+## ## COLORING
+## 
+- hex values
+- rgb values
+- rgba values
+
+
+##
+## ## SIZING
+## 
+
+pixels == px
+points == pt
+percentages = %
+
+! percentage sizing is based on the container that the element is in
+- percentage heights are weird and don't always work well -- this is because to use percentage height, the parent element's heigh must be set explicitly 
+- typically, we don't set heights at all for web development
+
+## EM
+
+the preferred way to set font size is with em
+- em works by using the em value provided as a percentage of the element's parent font size specification
+- em is a way to set RELATIVE font sizees
+- if no font size is specified anywhere in a given element's ancestry, em will use the browser default font size, which is 16px
+so
+
+.class-name{
+	font-size: 0.5em;
+}
+
+on an element with no font size specification anywhere in its ancestry will set that font's size to 8px -- 50% of 16px
+
+you can also use em to size other elements on the page. you just have to be careful because em is based on the font's line height. 
+
+
+## REM
+This rem unit works similarly to em, in that it is a percentage of an absolute font size, but instead of being cumulatively sized based on the whole parent/child tree, the rem unit always refers back to the font size of the html tag—in other words, it always refers to the most basic font size for the whole page.
+
+In effect, the rem unit works like a document-wide setting, so you can set the size of elements like boxes, or font sizes, and have them all tie back to a single value: the font size of the html element. If you want to make everything a little bigger, or smaller, you can change just this one font size and everything on the page adapts.
+
+rem is especially useful in combination with em units in developing modules. The best practice is to set a font size for the module’s wrapper using a rem unit, and then style the fonts inside using em units. Because rem values are absolute (in relation to the page font size), you don’t need to worry that the cumulative nature of em is going to keep going up the parent tree and make everything in the box tiny or huge (Section 3.5). This kind of styling allows you to create modules that can be safely dropped into any part of a page, while keeping the advantages of using relative font sizes.
+
+
+## VH & VW
+
+There are two newer dimensional units that are also incredibly useful for responsive (mobile) layouts: the viewport height, vh, and viewport width, vw. These units allow us to size elements on the page based on the actual size of the browser window or mobile device screen. Each vh or vw is 1 percent of the corresponding screen dimension, so 3vh would equal 3% of the height of the screen and 100vw would be 100% of the width.
+
+Neither vh nor vw is affected by parent elements, and neither has any weird cumulative inheritance issues—everything is determined by the size of the browser window or device screen.
+
+
+- this is awesome
+- you can also set font sizes using vw but remember -- no matter what unit you're using to set font size, you're always setting the font's height / line height, even if you use vw (as opposed to vh)
+
+
+## pleasing fonts
+- web readable fonts tend to be between 14 and 18 pixels
+- when designing sites, don't worry about pixel-perfect calculations
+- just make sure your site looks and feels readable
+
+
+
+
+
+
+
+
+
+
+

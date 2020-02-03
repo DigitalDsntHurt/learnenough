@@ -25,7 +25,14 @@ div{
 	text-decoration: underline;
 }
 
-in CSS we select dom elements to style using two methods
+
+
+
+##
+## ## NAMING THINGS
+## 
+
+In CSS we select dom elements to style using two methods
 1. id -- which selects only one element per page
 2. class -- which selects multiple elements per page
 
@@ -36,3 +43,77 @@ Although CSS offers a great deal of flexibility in choosing id and class names, 
 - Dashes (-), underscores _, and CamelCase can be used to join multiple words (so foo-bar-baz, foo_bar_baz, and FooBarBaz are all valid names).
 - Spaces are invalid in id names, and are used to separate multiple names in the case of classes (so id="foo bar" is illegal, while class="foo bar baz" places three separate classes on an element).
 - Be consistent (e.g., if using dashes as separators, use them everywhere—don’t mix them with underscores).
+
+!!
+You want to name css classes and ids in terms of their domain function, not in terms of the styles content. 
+
+So if we have an alert box that we want to be red, we don't want to name its css class "red", rather, we'd name it "alert". 
+
+Focus on what the class is supposed to represent, not on its visual appearance. 
+!!
+
+#
+# # IDs VS CLASSes
+# 
+
+Basically only use IDs if you absolutely have to. 
+Uses classes always. (if you're sing javascript, you'll have to use IDs)
+
+IDs have higher specificity than classes and so override classes in cases where IDs and Classes specify conflicting styles. in big complicated projects where style specifications cascade many levels down, this can be a huge problem. 
+
+
+#
+# # PRIORITY AND SPECIFICITY
+# 
+
+Conflict resolution is one of the trickiest things in all of css
+
+- when two instructions conflict, the last one in the css file is the one the browser uses
+
+- !important is a flag that forces the browser to use a particular style. 
+YOU SHOULD NEVER USE !important
+if ids are a bad thing to use because it make sepcificity more complicated, !important is even worse
+
+
+WAYS TO INCREASE SPECIFICITY
+
+1. add extra tags, eg from 
+
+a {
+	color: green;
+}
+
+to 
+
+h1 a {
+	color: green;
+}
+
+2. add classes, eg from 
+
+a {
+	color: green;
+}
+
+to 
+
+a.bio-box{
+	color: green;
+}
+
+THE RULE OF THUMB
+- keep selectors as simple as possible so that when projects swell in complexity and inheritance cascades down many levels we can still be clear about what style instructions are being applied to what DOM elements. 
+
+- if you find yourself writing hyper specific css selection, that's a good indication you need to rethink how you're applying things
+
+example of an overly specific mess:
+
+body div#exec-bio.bio-box a {
+	color: orange;
+}
+
+^ THE ABOVE IS BAD ^
+
+in general, we don't want to extend beyond 3 things in a selector
+when you start to appraoch your selector depth limit of three we need to start thinking about adding another class
+

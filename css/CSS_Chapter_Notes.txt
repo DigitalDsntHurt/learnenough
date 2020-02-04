@@ -210,9 +210,91 @@ Neither vh nor vw is affected by parent elements, and neither has any weird cumu
 
 
 
+##
+## ## THE BOX MODEL
+## 
+
+## INLINE VS BLOCK
+
+- inline elements flow the way words flow on a line of text. when they reach the end of space available on a line, they wrap down to the next line. 
+- you can think of inline elements as not a part of their own thing: they're a part of a flow of elements. 
+-- a and span are examples of inline elements
+-- images are inline elements (unless you float them, then they take on attributes of block elements)
+-- vertical padding, margins and other vertical properties cannot be applied to inline elements
+-- inline elements can't have widths or heights set: inline elements are like a rubber band, expanding and contracting around thier content
+
+whereas block elements take up the entire width of a page or their section -- it doesn't matter what you put inside the box, the box has its own dimensions. 
+
+you can manually set inline elements to inherit the properties of block elements with 
+
+div {
+  display: block;
+}
+
+block elements automatically expand to fill whatever horizontal space they have available unless you explicitly specify a their widths
+
+setting an inline element's display property to block will also give that element its own line
+
+using the display value inline-block is convenient for things like menus
+
+div {
+  display: inline-block;
+}
+
+where you might want menu items to display inline next to eachother but still specify heights, widths and padding
 
 
+## PADDING, BORDERS
 
+padding and borders are added to an element's width
+so if you set
+
+div{
+  width: 100px;
+  padding: 10px;
+  border: 5px solid black;
+}
+
+the resulting div will be 130px wide: 100px for the content, 10px of padding on each side, 5px of border on each side
+
+but we can fix this so that css renders more intuitively by setting the box-sizing attribute to border-box
+
+div{
+  width: 100px;
+  padding: 10px;
+  border: 5px solid black;
+  box-sizing: border-box;
+}
+
+the above limits the total width of the div to 100 px and the border and padding come out of that 100px
+
+
+## MARGINS
+
+margins get a little weird. 
+
+when two elements are next to eachother, each with a 50px margin, you'd expect there to be 100px between the elements
+
+but this is only the case for inline elements. 
+
+when block elements are next to eachother, their margins are collapsed and ONLY the larger margin is displayed by the browser
+
+
+## FLOATS
+
+The idea is that when you set an element to float to the left or right (there is no float: center), all the inline content around it will flow around the floated element like water. Floated elements will always sit next to other floated elements on the same line, as long as there is horizontal room. If the elements are too wide, they will drop down to the next line.
+
+So, why might a developer not want to always use floating to get elements to line up side-by-side?
+
+For one, there are only two options, float: left and float: right, but no float: center. That’s annoying, but manageable. The bigger problem is that the browser doesn’t always know where to end the float. When you float elements, you are telling the browser that you’d like the element to show up on the page in the place it would naturally “float” to, but after that starting position you want the rest of the page content to flow around the floated element. This can disrupt the orderly box-like arrangement of elements, and create some odd-looking layouts.
+
+One way to get things back to the expected result would be to use the CSS clear rule, which is used to let the browser know to end floats. 
+
+Applying something like clear: left to the first element beneath your floated elements is the idea.
+
+This will force the elements below the floated elements onto a new line below the floated elements, and it will prevent any other element below it on the page from being altered by the float
+
+If the floating elements had been floated to the right using float: right, you would need to clear their float status with clear: right, or (if you just want to be extra careful) you can clear both types of floats using clear: both.
 
 
 
